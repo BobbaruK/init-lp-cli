@@ -1,0 +1,40 @@
+{
+  "name": "init-lp",
+  "version": "1.0.0",
+  "files": [
+    "dist/",
+    "bin/"
+  ],
+  "main": "dist/index.js",
+  "bin": {
+    "init-lp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node --loader ts-node/esm src/index.ts"
+  },
+  "keywords": [
+    "CLI",
+    "Astro",
+    "React",
+    "Tailwind",
+    "ShadCN"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "description": "CLI pentru setup-ul unui proiect Astro cu React, Tailwind și ShadCN",
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "chalk-animation": "^2.0.3",
+    "figlet": "^1.8.0",
+    "gradient-string": "^3.0.0",
+    "inquirer": "^12.5.0",
+    "nanospinner": "^1.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.13",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  }
+}
