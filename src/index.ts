@@ -4,6 +4,7 @@ import chalk from "chalk";
 import inquirer from "inquirer";
 import { createAstroProject } from "./steps/create-astro-project.js";
 import { editAstroConfig } from "./steps/edit-astro-config.js";
+import { editTSConfig } from "./steps/edit-ts-config.js";
 
 let projectName: string = "";
 
@@ -47,4 +48,7 @@ async function setProjectName(count: number) {
 
   count++;
   await editAstroConfig(count, projectName);
+
+  count++;
+  await editTSConfig(count, projectName);
 })();
