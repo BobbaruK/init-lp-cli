@@ -6,6 +6,7 @@ import { addSass } from "./steps/add-sass.js";
 import { createAstroProject } from "./steps/create-astro-project.js";
 import { createStylesheet } from "./steps/create-stylesheet-file.js";
 import { editAstroConfig } from "./steps/edit-astro-config.js";
+import { editIndex } from "./steps/edit-index.js";
 import { editTSConfig } from "./steps/edit-ts-config.js";
 
 let projectName: string = "";
@@ -59,4 +60,7 @@ async function setProjectName(count: number) {
 
   count++;
   await addSass(count, projectName);
+
+  count++;
+  await editIndex(count, projectName);
 })();
