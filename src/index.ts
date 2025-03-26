@@ -2,6 +2,7 @@
 
 import chalk from "chalk";
 import inquirer from "inquirer";
+import { addSass } from "./steps/add-sass.js";
 import { createAstroProject } from "./steps/create-astro-project.js";
 import { createStylesheet } from "./steps/create-stylesheet-file.js";
 import { editAstroConfig } from "./steps/edit-astro-config.js";
@@ -55,4 +56,7 @@ async function setProjectName(count: number) {
 
   count++;
   await createStylesheet(count, projectName);
+
+  count++;
+  await addSass(count, projectName);
 })();
