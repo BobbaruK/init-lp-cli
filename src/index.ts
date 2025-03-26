@@ -15,6 +15,7 @@ import { createStylesheet } from "./steps/create-stylesheet-file.js";
 import { editAstroConfig } from "./steps/edit-astro-config.js";
 import { editIndex } from "./steps/edit-index.js";
 import { editTSConfig } from "./steps/edit-ts-config.js";
+import { addShadCN } from "./steps/add-shadcn.js";
 
 let projectName: string = "";
 
@@ -91,4 +92,7 @@ async function setProjectName(count: number) {
 
   count++;
   await createPrettierrc(count, projectName);
+
+  count++;
+  await addShadCN(count, projectName);
 })();
