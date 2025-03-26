@@ -2,6 +2,7 @@
 
 import chalk from "chalk";
 import inquirer from "inquirer";
+import { createAstroProject } from "./steps/create-astro-project.js";
 
 let projectName: string = "";
 
@@ -37,7 +38,9 @@ async function setProjectName(count: number) {
 (async function main() {
   let count = 0;
   await welcome();
-	
   count++;
   await setProjectName(count);
+
+  count++;
+  await createAstroProject(count, projectName);
 })();
