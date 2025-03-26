@@ -10,7 +10,7 @@ export async function addPrettierPlugin(count: number, projectName: string) {
   );
 
   const rainbowText = chalkAnimation.rainbow(
-    "Installing Prettier Plugin for Astro and Tailwind...\n"
+    "Installing Prettier Plugin for Astro and TailwindCSS...\n"
   );
 
   return new Promise<void>((resolve, reject) => {

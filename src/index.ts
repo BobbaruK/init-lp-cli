@@ -16,6 +16,8 @@ import { editAstroConfig } from "./steps/edit-astro-config.js";
 import { editIndex } from "./steps/edit-index.js";
 import { editTSConfig } from "./steps/edit-ts-config.js";
 import { addShadCN } from "./steps/add-shadcn.js";
+import figlet from "figlet";
+import { pastel } from "gradient-string";
 
 let projectName: string = "";
 
@@ -46,6 +48,60 @@ async function setProjectName(count: number) {
   });
 
   projectName = answers.project_name;
+}
+
+async function outro(count: number, projectName: string) {
+  console.log(
+    `\n${chalk.cyan(`Step ${count} (optional):`)} VS Code Prettier extension\n`
+  );
+
+  console.log(
+    `${chalk.underline(
+      chalk.yellowBright(
+        `One more thing before you start building, fellow developer.`
+      )
+    )}\n`
+  );
+
+  console.log(
+    `If you haven't done this by now, install the ${chalk.blue.underline(
+      "\x1b]8;;https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode\x1b\\VS Code Prettier extension\x1b]8;;\x1b\\"
+    )} (https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) and add the following settings to your VS Code configuration:\n`
+  );
+
+  console.log(
+    `${chalk.bgBlackBright("CTRL + SHIFT + P")} > ${chalk.bgBlackBright(
+      "Preferences: User Settings (JSON)"
+    )}`
+  );
+
+  console.log(`\n{
+  "prettier.documentSelectors": ["**/*.astro"],
+  "[astro]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}`);
+
+  console.log(`\n${chalk.cyan(`Last step:`)} Happy Coding!\n`);
+
+  console.log(`cd ${projectName} && npm run dev\n`);
+  console.log(`${chalk.blackBright("npm run dev")} - development`);
+  console.log(`${chalk.blackBright("npm run build")} - build`);
+  console.log(
+    `${chalk.blackBright("npm run preview")} - preview build before deploy\n`
+  );
+
+  const msg = "A R T S";
+
+  figlet(
+    msg,
+    {
+      font: "Bloody",
+    },
+    (err, data) => {
+      console.log(`\n${pastel.multiline(data || "")}\n`);
+    }
+  );
 }
 
 (async function main() {
@@ -95,4 +151,7 @@ async function setProjectName(count: number) {
 
   count++;
   await addShadCN(count, projectName);
+
+  count++;
+  await outro(count, projectName);
 })();
