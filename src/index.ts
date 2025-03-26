@@ -4,6 +4,7 @@ import chalk from "chalk";
 import inquirer from "inquirer";
 import { addSass } from "./steps/add-sass.js";
 import { createAstroProject } from "./steps/create-astro-project.js";
+import { createLayout } from "./steps/create-layout.js";
 import { createStylesheet } from "./steps/create-stylesheet-file.js";
 import { editAstroConfig } from "./steps/edit-astro-config.js";
 import { editIndex } from "./steps/edit-index.js";
@@ -63,4 +64,7 @@ async function setProjectName(count: number) {
 
   count++;
   await editIndex(count, projectName);
+
+  count++;
+  await createLayout(count, projectName);
 })();

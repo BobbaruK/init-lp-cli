@@ -1,8 +1,7 @@
 import chalk from "chalk";
 import chalkAnimation from "chalk-animation";
-import { exec } from "child_process";
-import path from "path";
 import fs from "fs";
+import path from "path";
 import { sleep } from "../utils/sleep.js";
 
 export async function editIndex(count: number, projectName: string) {
