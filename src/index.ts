@@ -2,6 +2,7 @@
 
 import chalk from "chalk";
 import inquirer from "inquirer";
+import { addPrettierPlugin } from "./steps/add-prettier-plugin.js";
 import { addSass } from "./steps/add-sass.js";
 import { createAstroProject } from "./steps/create-astro-project.js";
 import { createComponentFooter } from "./steps/create-component-footer.js";
@@ -83,4 +84,7 @@ async function setProjectName(count: number) {
 
   count++;
   await createComponentSectionTest(count, projectName);
+
+  count++;
+  await addPrettierPlugin(count, projectName);
 })();
