@@ -6,6 +6,7 @@ import { addSass } from "./steps/add-sass.js";
 import { createAstroProject } from "./steps/create-astro-project.js";
 import { createComponentFooter } from "./steps/create-component-footer.js";
 import { createComponentHeader } from "./steps/create-component-header.js";
+import { createComponentSection1 } from "./steps/create-component-section-1.js";
 import { createLayout } from "./steps/create-layout.js";
 import { createStylesheet } from "./steps/create-stylesheet-file.js";
 import { editAstroConfig } from "./steps/edit-astro-config.js";
@@ -75,4 +76,7 @@ async function setProjectName(count: number) {
 
   count++;
   await createComponentHeader(count, projectName);
+
+  count++;
+  await createComponentSection1(count, projectName);
 })();
