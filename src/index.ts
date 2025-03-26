@@ -10,6 +10,7 @@ import { createComponentHeader } from "./steps/create-component-header.js";
 import { createComponentSection1 } from "./steps/create-component-section-1.js";
 import { createComponentSectionTest } from "./steps/create-component-section-test.js";
 import { createLayout } from "./steps/create-layout.js";
+import { createPrettierrc } from "./steps/create-prettierrc.js";
 import { createStylesheet } from "./steps/create-stylesheet-file.js";
 import { editAstroConfig } from "./steps/edit-astro-config.js";
 import { editIndex } from "./steps/edit-index.js";
@@ -87,4 +88,7 @@ async function setProjectName(count: number) {
 
   count++;
   await addPrettierPlugin(count, projectName);
+
+  count++;
+  await createPrettierrc(count, projectName);
 })();
