@@ -1,9 +1,12 @@
 #!/usr/bin/env node
 
 import chalk from "chalk";
+import figlet from "figlet";
+import { pastel } from "gradient-string";
 import inquirer from "inquirer";
 import { addPrettierPlugin } from "./steps/add-prettier-plugin.js";
 import { addSass } from "./steps/add-sass.js";
+import { addShadCN } from "./steps/add-shadcn.js";
 import { createAstroProject } from "./steps/create-astro-project.js";
 import { createComponentFooter } from "./steps/create-component-footer.js";
 import { createComponentHeader } from "./steps/create-component-header.js";
@@ -15,12 +18,10 @@ import { createStylesheet } from "./steps/create-stylesheet-file.js";
 import { editAstroConfig } from "./steps/edit-astro-config.js";
 import { editIndex } from "./steps/edit-index.js";
 import { editTSConfig } from "./steps/edit-ts-config.js";
-import { addShadCN } from "./steps/add-shadcn.js";
-import figlet from "figlet";
-import { pastel } from "gradient-string";
 
 let projectName: string = "";
 let addModal: boolean = false;
+let addBackToTop: boolean = false;
 
 async function welcome() {
   console.log(
@@ -56,6 +57,7 @@ async function gatherInformation(count: number) {
 
   const answers = await inquirer.prompt<{
     add_modal: boolean;
+    add_btt: boolean;
   }>([
     {
       name: "add_modal",
@@ -63,9 +65,16 @@ async function gatherInformation(count: number) {
       message: "Add modal?",
       default: false,
     },
+    {
+      name: "add_btt",
+      type: "confirm",
+      message: "Add back to top component?",
+      default: true,
+    },
   ]);
 
   addModal = answers.add_modal;
+  addBackToTop = answers.add_btt;
 }
 
 async function outro(count: number, projectName: string) {
@@ -152,7 +161,7 @@ async function outro(count: number, projectName: string) {
   await editIndex(count, projectName);
 
   count++;
-  await createLayout(count, projectName, addModal);
+  await createLayout(count, projectName, addModal, addBackToTop);
 
   count++;
   await createComponentFooter(count, projectName);

@@ -7,7 +7,8 @@ import { sleep } from "../utils/sleep.js";
 export async function createLayout(
   count: number,
   projectName: string,
-  addModal: boolean
+  addModal: boolean,
+  addBackToTop: boolean
 ) {
   console.log(`\n${chalk.cyan(`Step ${count}:`)} Create Layout\n`);
 
@@ -25,6 +26,10 @@ import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";${
     addModal
       ? '\nimport Dialog from "../../../../globals/components/custom-dialog/dialog.astro";'
+      : ""
+  }${
+    addBackToTop
+      ? '\nimport BackToTop from "../../../../globals/components/back-to-top/back-to-top.astro";'
       : ""
   }
 import type { ComponentProps } from "../../../../globals/types/component-props";
@@ -72,7 +77,9 @@ const lang = componentProps.lang as keyof typeof componentProps.brandObj.typage;
         <slot />
       </main>
       <Footer componentProps={componentProps} />
-    </div>${addModal ? "\n\t\t<Dialog> Dialog Content Here! </Dialog>\n" : ""}
+    </div>
+    ${addModal ? "<Dialog> Dialog Content Here! </Dialog>" : ""}
+    ${addBackToTop ? "<BackToTop />" : ""}
     <script
       type="module"
       src="https://assets.smartsupporthub.com/js/bundle/astro_lp_v2.js"
