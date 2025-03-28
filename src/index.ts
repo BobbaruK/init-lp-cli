@@ -51,7 +51,7 @@ async function setProjectName(count: number) {
   projectName = answers.project_name;
 }
 
-async function setGatherInfo(count: number) {
+async function gatherInformation(count: number) {
   console.log(`\n${chalk.cyan(`Step ${count}:`)} Gather information\n`);
 
   const answers = await inquirer.prompt<{
@@ -131,7 +131,7 @@ async function outro(count: number, projectName: string) {
   await setProjectName(count);
 
   count++;
-  await setGatherInfo(count);
+  await gatherInformation(count);
 
   count++;
   await createAstroProject(count, projectName);
