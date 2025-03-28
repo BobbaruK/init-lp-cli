@@ -52,6 +52,7 @@ const lang = componentProps.lang as keyof typeof componentProps.brandObj.typage;
   data-wanumber={componentProps.brandObj.whatsapp
     ? componentProps.brandObj.whatsappNumber[lang]
     : false}
+  data-lpfeatures={componentProps.features?.join(', ')}
 >
   <head>
     <meta charset="utf-8" />
