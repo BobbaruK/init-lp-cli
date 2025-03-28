@@ -4,7 +4,11 @@ import fs from "fs";
 import path from "path";
 import { sleep } from "../utils/sleep.js";
 
-export async function createLayout(count: number, projectName: string) {
+export async function createLayout(
+  count: number,
+  projectName: string,
+  addModal: boolean
+) {
   console.log(`\n${chalk.cyan(`Step ${count}:`)} Create Layout\n`);
 
   const rainbowText = chalkAnimation.rainbow("Creating Layout.astro...\n");
@@ -18,7 +22,11 @@ export async function createLayout(count: number, projectName: string) {
   );
   const fileContent = `---
 import Footer from "@/components/Footer.astro";
-import Header from "@/components/Header.astro";
+import Header from "@/components/Header.astro";${
+    addModal
+      ? '\nimport Dialog from "../../../../globals/components/custom-dialog/dialog.astro";'
+      : ""
+  }
 import type { ComponentProps } from "../../../../globals/types/component-props";
 import "../styles/global.css";
 
@@ -63,7 +71,7 @@ const lang = componentProps.lang as keyof typeof componentProps.brandObj.typage;
         <slot />
       </main>
       <Footer componentProps={componentProps} />
-    </div>
+    </div>${addModal ? "\n\t\t<Dialog> Dialog Content Here! </Dialog>\n" : ""}
     <script
       type="module"
       src="https://assets.smartsupporthub.com/js/bundle/astro_lp_v2.js"
@@ -77,7 +85,13 @@ const lang = componentProps.lang as keyof typeof componentProps.brandObj.typage;
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;
   }
-</style>`;
+</style>${
+    addModal &&
+    `\n\n<script>
+  import { initModal } from "../../../../globals/components/custom-dialog/init.ts";
+  initModal();
+</script>`
+  }`;
 
   try {
     fs.mkdirSync(path.dirname(filePath), { recursive: true });

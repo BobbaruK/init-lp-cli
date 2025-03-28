@@ -20,6 +20,7 @@ import figlet from "figlet";
 import { pastel } from "gradient-string";
 
 let projectName: string = "";
+let addModal: boolean = false;
 
 async function welcome() {
   console.log(
@@ -48,6 +49,23 @@ async function setProjectName(count: number) {
   });
 
   projectName = answers.project_name;
+}
+
+async function setGatherInfo(count: number) {
+  console.log(`\n${chalk.cyan(`Step ${count}:`)} Gather information\n`);
+
+  const answers = await inquirer.prompt<{
+    add_modal: boolean;
+  }>([
+    {
+      name: "add_modal",
+      type: "confirm",
+      message: "Add modal?",
+      default: false,
+    },
+  ]);
+
+  addModal = answers.add_modal;
 }
 
 async function outro(count: number, projectName: string) {
@@ -106,9 +124,14 @@ async function outro(count: number, projectName: string) {
 
 (async function main() {
   let count = 0;
+
   await welcome();
+
   count++;
   await setProjectName(count);
+
+  count++;
+  await setGatherInfo(count);
 
   count++;
   await createAstroProject(count, projectName);
@@ -129,7 +152,7 @@ async function outro(count: number, projectName: string) {
   await editIndex(count, projectName);
 
   count++;
-  await createLayout(count, projectName);
+  await createLayout(count, projectName, addModal);
 
   count++;
   await createComponentFooter(count, projectName);
@@ -141,7 +164,7 @@ async function outro(count: number, projectName: string) {
   await createComponentSection1(count, projectName);
 
   count++;
-  await createComponentSectionTest(count, projectName);
+  await createComponentSectionTest(count, projectName, addModal);
 
   count++;
   await addPrettierPlugin(count, projectName);

@@ -6,7 +6,8 @@ import { sleep } from "../utils/sleep.js";
 
 export async function createComponentSectionTest(
   count: number,
-  projectName: string
+  projectName: string,
+  addModal: boolean
 ) {
   console.log(`\n${chalk.cyan(`Step ${count}:`)} Create Section-Test\n`);
 
@@ -32,8 +33,8 @@ interface Props {
 const { componentProps } = Astro.props;
 ---
 
-<section id="section1" class="section1">
-  <div class="container">
+<section id="section1" class="section1 py-6">
+  <div class="container space-y-6">
     <h1 class="text-heading1 font-black">Heading 1</h1>
     <h2 class="text-heading2 font-black">Heading 2</h2>
     <h3 class="text-heading3 font-black">Heading 3</h3>
@@ -47,8 +48,12 @@ const { componentProps } = Astro.props;
       <Button variant={"link"}>Link</Button>
       <Button variant={"outline"}>Outline</Button>
     </div>
-    <p>{componentProps.brandObj.name}</p>
-    <Form componentProps={componentProps} button={"testing"} id="form1" />
+    <p>{componentProps.brandObj.name}</p>${
+      addModal
+        ? `\n\t\t<Button className="js-modal-trigger">Open Modal</Button>\n`
+        : ""
+    }
+    <Form componentProps={componentProps} button={"testing"} id="section-form" />
   </div>
 </section>`;
 
