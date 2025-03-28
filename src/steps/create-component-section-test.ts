@@ -41,6 +41,9 @@ const { componentProps } = Astro.props;
     <h4>Heading 4</h4>
     <h5>Heading 5</h5>
     <h6>Heading 6</h6>
+    <p class="text-para-lead">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur, ipsa!
+    </p>
     <div class="my-4 flex flex-wrap gap-4">
       <Button variant={"default"}>Primary</Button>
       <Button variant={"secondary"}>Secondary</Button>
@@ -58,10 +61,8 @@ const { componentProps } = Astro.props;
 </section>`;
 
   try {
-    // Creează folderul `src/` dacă nu există
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
 
-    // Scrie fișierul
     fs.writeFileSync(filePath, fileContent, "utf8");
 
     await sleep(750);

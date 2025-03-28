@@ -59,6 +59,17 @@ export async function createStylesheet(count: number, projectName: string) {
     1rem + 1.25vw,
     2rem
   ); /* 20 - 32 ; 320 - 1280 */
+
+  --text-para-lead: clamp(
+    1rem,
+    0.9167rem + 0.4167vw,
+    1.25rem
+  ); /* 16 - 20 ; 320 - 1280 */
+  --text-para-lead--line-height: clamp(
+    1.25rem,
+    1rem + 1.25vw,
+    2rem
+  ); /* 20 - 32 ; 320 - 1280 */
 }`;
 
   try {
