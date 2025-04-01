@@ -82,9 +82,10 @@ const lang = componentProps.lang as keyof typeof componentProps.brandObj.typage;
     min-height: 100vh;
   }
 </style>${
-  addModal &&
-  `\n\n<script>
+  addModal
+    ? `\n\n<script>
   import { initModal } from "../../../../globals/components/custom-dialog/init.ts";
   initModal();
 </script>`
+    : ""
 }`;
