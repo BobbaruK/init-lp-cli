@@ -3,6 +3,7 @@ import chalkAnimation from "chalk-animation";
 import fs from "fs";
 import path from "path";
 import { sleep } from "../utils/sleep.js";
+import { indexPageContent } from "../content/index-page.js";
 
 export async function editIndex(count: number, projectName: string) {
   console.log(
@@ -21,64 +22,7 @@ export async function editIndex(count: number, projectName: string) {
     "index.astro"
   );
 
-  const newContent = `---
-import SectionTest from "@/components/Section-Test.astro";
-import Section1 from "@/components/Section1.astro";
-import { brandFactory } from "../../../../globals/factory";
-import { type TradingAtheneumSVGVariation } from "../../../../globals/types/brands/logo";
-import type { ComponentProps } from "../../../../globals/types/component-props";
-// import { Features } from "../../../../globals/types/enums";
-import type {
-  LandingPageType,
-  LicenseType,
-  RegistrationType,
-} from "../../../../globals/types/lp-params-type";
-import { checkFeatures } from "../../../../globals/utils/check-features";
-import Layout from "../layouts/Layout.astro";
-
-const license: LicenseType = "fsa";
-const lpType: LandingPageType = "classic";
-const features = checkFeatures([
-  // Features.readyForMail,
-  // Features.outbrain,
-  // Features.atheneum,
-]);
-const registrationType: RegistrationType = "classic";
-
-export interface CustomOptions {
-  logoSquare: boolean;
-}
-
-const componentProps: ComponentProps<
-  TradingAtheneumSVGVariation,
-  CustomOptions
-> = {
-  lang: "en",
-  license,
-  lpName: "",
-  brandObj: brandFactory({
-    brand: "tradingatheneum",
-    license,
-    whatsapp: false,
-    features,
-  }),
-  logo: function () {
-    return this.brandObj.images.logoSVG.defaultCustom;
-  },
-  lpType,
-  registrationType,
-  customOptions: {
-    logoSquare: false,
-  },
-  features,
-  // fxoroFooter: true,
-};
----
-
-<Layout componentProps={componentProps}>
-  <SectionTest componentProps={componentProps} />
-  <Section1 componentProps={componentProps} />
-</Layout>`;
+  const newContent = indexPageContent;
 
   try {
     fs.writeFileSync(filePath, newContent, "utf8");

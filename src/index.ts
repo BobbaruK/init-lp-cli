@@ -170,7 +170,7 @@ async function outro(count: number, projectName: string) {
   await createComponentHeader(count, projectName);
 
   count++;
-  await createComponentSection1(count, projectName);
+  await createComponentSection1(count, projectName, addModal);
 
   count++;
   await createComponentSectionTest(count, projectName, addModal);

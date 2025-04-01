@@ -3,6 +3,7 @@ import chalkAnimation from "chalk-animation";
 import fs from "fs";
 import path from "path";
 import { sleep } from "../utils/sleep.js";
+import { sectionTestFileContent } from "../content/section-test.js";
 
 export async function createComponentSectionTest(
   count: number,
@@ -22,43 +23,7 @@ export async function createComponentSectionTest(
     "components",
     "Section-Test.astro"
   );
-  const fileContent = `---
-import { Button } from "@/components/ui/button";
-import Form from "../../../../globals/components/form";
-import type { ComponentProps } from "../../../../globals/types/component-props";
-
-interface Props {
-  componentProps: ComponentProps;
-}
-const { componentProps } = Astro.props;
----
-
-<section id="section1" class="section1 py-6">
-  <div class="container space-y-6">
-    <h1 class="text-heading1 font-black">Heading 1</h1>
-    <h2 class="text-heading2 font-black">Heading 2</h2>
-    <h3 class="text-heading3 font-black">Heading 3</h3>
-    <h4>Heading 4</h4>
-    <h5>Heading 5</h5>
-    <h6>Heading 6</h6>
-    <p class="text-para-lead">
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur, ipsa!
-    </p>
-    <div class="my-4 flex flex-wrap gap-4">
-      <Button variant={"default"}>Primary</Button>
-      <Button variant={"secondary"}>Secondary</Button>
-      <Button variant={"ghost"}>Ghost</Button>
-      <Button variant={"link"}>Link</Button>
-      <Button variant={"outline"}>Outline</Button>
-    </div>
-    <p>{componentProps.brandObj.name}</p>${
-      addModal
-        ? `\n\t\t<Button className="js-modal-trigger">Open Modal</Button>\n`
-        : ""
-    }
-    <Form componentProps={componentProps} button={"testing"} id="section-form" />
-  </div>
-</section>`;
+  const fileContent = sectionTestFileContent(addModal);
 
   try {
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
