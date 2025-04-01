@@ -3,6 +3,7 @@ import chalkAnimation from "chalk-animation";
 import fs from "fs";
 import path from "path";
 import { sleep } from "../utils/sleep.js";
+import { prettierrcContent } from "../content/prettier.js";
 
 export async function createPrettierrc(count: number, projectName: string) {
   console.log(`\n${chalk.cyan(`Step ${count}:`)} Create .prettierrc.mjs\n`);
@@ -10,18 +11,7 @@ export async function createPrettierrc(count: number, projectName: string) {
   const rainbowText = chalkAnimation.rainbow("Creating .prettierrc.mjs...\n");
 
   const filePath = path.resolve(process.cwd(), projectName, ".prettierrc.mjs");
-  const fileContent = `/** @type {import("prettier").Config} */
-export default {
-  plugins: ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
-  overrides: [
-    {
-      files: "*.astro",
-      options: {
-        parser: "astro",
-      },
-    },
-  ],
-};`;
+  const fileContent = prettierrcContent;
 
   try {
     // Creează folderul `src/` dacă nu există

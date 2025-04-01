@@ -2,6 +2,7 @@ import chalk from "chalk";
 import chalkAnimation from "chalk-animation";
 import fs from "fs";
 import path from "path";
+import { headerContent } from "../content/header.js";
 import { sleep } from "../utils/sleep.js";
 
 export async function createComponentHeader(
@@ -19,26 +20,7 @@ export async function createComponentHeader(
     "components",
     "Header.astro"
   );
-  const fileContent = `---
-import { type CustomOptions } from "@/pages/index.astro";
-import MainLogo from "../../../../globals/components/logos/MainLogo.astro";
-import { type ComponentProps } from "../../../../globals/types/component-props";
-
-interface Props {
-  componentProps: ComponentProps<any, CustomOptions>;
-}
-const { componentProps } = Astro.props;
----
-
-<header id="header">
-  <div class="container">
-    <MainLogo
-      size={componentProps.brandObj.nameToLower}
-      logo={componentProps.logo()}
-      square={componentProps.customOptions?.logoSquare}
-    />
-  </div>
-</header>`;
+  const fileContent = headerContent;
 
   try {
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
