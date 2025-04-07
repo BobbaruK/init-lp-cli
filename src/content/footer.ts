@@ -21,6 +21,7 @@ const { componentProps } = Astro.props;
 }
 
 <style is:global>
+  @reference "../styles/global.css";
   .brandFooter {
     padding-block: calc(var(--spacing) * 8);
     background-color: var(--color-stone-700);
