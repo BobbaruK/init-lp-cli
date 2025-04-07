@@ -11,7 +11,6 @@ const { componentProps } = Astro.props;
 
 {
   componentProps.fxoroFooter ? (
-    // TODO: handle style for FxoroFooter
     <FxoroFooter componentProps={componentProps} />
   ) : (
     <BrandFooter
@@ -39,13 +38,12 @@ const { componentProps } = Astro.props;
     place-items: center;
   }
 
-  /* TODO: handle style for FxoroFooter */
-  /* #globalFooter {
+  #globalFooter {
     > .modal {
       display: none !important;
     }
     .dfSomething {
-      // @apply mt-4;
+      /* @apply mt-4; */
     }
     .theApps {
       @apply py-4;
@@ -66,5 +64,5 @@ const { componentProps } = Astro.props;
         @apply z-30;
       }
     }
-  } */
+  }
 </style>`;
