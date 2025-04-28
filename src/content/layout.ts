@@ -1,4 +1,8 @@
-export const layoutContent = (addModal: boolean, addBackToTop: boolean) => `---
+export const layoutContent = (
+  projectName: string,
+  addModal: boolean,
+  addBackToTop: boolean
+) => `---
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";${
   addModal
@@ -25,7 +29,10 @@ const lang = componentProps.lang as keyof typeof componentProps.brandObj.typage;
 <html
   lang={lang}
   dir={lang === "ar" ? "rtl" : "ltr"}
+  data-design="${projectName}"
   data-brandname={componentProps.brandObj.name}
+  data-features={componentProps.features?.join(", ")}
+  data-license={componentProps.license}
   data-lptype={componentProps.lpType}
   data-registrationtype={componentProps.registrationType}
   data-recaptchasitekey={componentProps.brandObj.recaptchaKey}
@@ -34,7 +41,6 @@ const lang = componentProps.lang as keyof typeof componentProps.brandObj.typage;
   data-wanumber={componentProps.brandObj.whatsapp
     ? componentProps.brandObj.whatsappNumber[lang]
     : false}
-  data-lpfeatures={componentProps.features?.join(', ')}
 >
   <head>
     <meta charset="utf-8" />

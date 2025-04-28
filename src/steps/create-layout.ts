@@ -22,7 +22,7 @@ export async function createLayout(
     "layouts",
     "Layout.astro"
   );
-  const fileContent = layoutContent(addModal, addBackToTop);
+  const fileContent = layoutContent(projectName, addModal, addBackToTop);
 
   try {
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
