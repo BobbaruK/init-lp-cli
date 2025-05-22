@@ -2,6 +2,7 @@ export const footerContent = `---
 import BrandFooter from "../../../../globals/components/Footer/brand-footer.astro";
 import FxoroFooter from "../../../../globals/components/Footer/fxoro-footer.astro";
 import type { ComponentProps } from "../../../../globals/types/component-props";
+import { Features } from "../../../../globals/types/enums";
 
 interface Props {
   componentProps: ComponentProps;
@@ -16,6 +17,11 @@ const { componentProps } = Astro.props;
     <BrandFooter
       componentProps={componentProps}
       footerMetaData={componentProps.brandObj.footerMetaData}
+      showPrivacy={
+        componentProps.features?.includes(Features.policyInFooter)
+          ? true
+          : false
+      }
     />
   )
 }
