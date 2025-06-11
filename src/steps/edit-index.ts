@@ -22,10 +22,8 @@ export async function editIndex(count: number, projectName: string) {
     "index.astro"
   );
 
-  const newContent = indexPageContent;
-
   try {
-    fs.writeFileSync(filePath, newContent, "utf8");
+    fs.writeFileSync(filePath, indexPageContent, "utf8");
 
     await sleep(500);
     rainbowText.stop();
