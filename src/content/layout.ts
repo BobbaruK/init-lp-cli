@@ -14,13 +14,15 @@ import Header from "@/components/Header.astro";${
     : ""
 }
 import type { ComponentProps } from "../../../../globals/types/component-props";
+import type { TranslationsType } from "../../../../globals/types/translations";
 import "../styles/global.css";
 
 interface Props {
   componentProps: ComponentProps;
+  metaDescription: TranslationsType;
 }
 
-const { componentProps } = Astro.props;
+const { componentProps, metaDescription } = Astro.props;
 
 const lang = componentProps.lang as keyof typeof componentProps.brandObj.typage;
 ---
@@ -29,7 +31,7 @@ const lang = componentProps.lang as keyof typeof componentProps.brandObj.typage;
 <html
   lang={lang}
   dir={lang === "ar" ? "rtl" : "ltr"}
-  data-design="${projectName}"
+  data-design="pre-cur"
   data-brandname={componentProps.brandObj.name}
   data-features={componentProps.features?.join(", ")}
   data-license={componentProps.license}
@@ -51,7 +53,21 @@ const lang = componentProps.lang as keyof typeof componentProps.brandObj.typage;
     />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{componentProps.lpName} | {componentProps.brandObj.name}</title>
+    <title>
+      {
+        componentProps.lpName
+          ? componentProps.lpName + " | " + componentProps.brandObj.name
+          : componentProps.brandObj.name
+      }
+    </title>
+    {
+      metaDescription[componentProps.lang] && (
+        <meta
+          name="description"
+          content={metaDescription[componentProps.lang]}
+        />
+      )
+    }
     <style>
       html {
         scroll-behavior: smooth;
